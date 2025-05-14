@@ -1,0 +1,10 @@
+services:
+  victoriametrics:
+    image: victoriametrics/victoria-metrics:v1.95.1
+    ports:
+      - "8428:8428"
+    volumes:
+      - ./victoria-data:/storage
+    command:
+      - '-retentionPeriod=2w'
+
