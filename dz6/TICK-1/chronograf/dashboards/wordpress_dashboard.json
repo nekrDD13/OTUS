@@ -1,0 +1,7 @@
+{
+  "dashboard": "WordPress Metrics",
+  "charts": [
+    {"type": "line", "metric": "cpu"},
+    {"type": "line", "metric": "mem"}
+  ]
+}
