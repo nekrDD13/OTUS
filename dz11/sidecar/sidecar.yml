@@ -1,0 +1,8 @@
+server_url: "http://10.0.2.16:9000/api/"
+node_id: "cms-server"
+update_interval: 10
+tls_skip_verify: true
+send_status: true
+log_path: "/var/log/graylog-sidecar"
+log_rotation_time: 86400
+tags: ["linux", "cms"]
