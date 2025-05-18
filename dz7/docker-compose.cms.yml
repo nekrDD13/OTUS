@@ -1,0 +1,27 @@
+
+version: '3'
+services:
+  wordpress:
+    image: wordpress:latest
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: exampleuser
+      WORDPRESS_DB_PASSWORD: examplepass
+      WORDPRESS_DB_NAME: exampledb
+    ports:
+      - "80:80"
+  db:
+    image: mariadb
+    environment:
+      MYSQL_DATABASE: exampledb
+      MYSQL_USER: exampleuser
+      MYSQL_PASSWORD: examplepass
+      MYSQL_ROOT_PASSWORD: rootpass
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:7.17.3
+    volumes:
+      - ./filebeat.yml:/usr/share/filebeat/filebeat.yml
+  metricbeat:
+    image: docker.elastic.co/beats/metricbeat:7.17.3
+    volumes:
+      - ./metricbeat.yml:/usr/share/metricbeat/metricbeat.yml

@@ -1,0 +1,11 @@
+
+filebeat.inputs:
+  - type: log
+    enabled: true
+    paths:
+      - /var/log/nginx/*.log
+      - /var/log/php*.log
+      - /var/log/mysql/*.log
+
+output.elasticsearch:
+  hosts: ["http://10.0.2.16:9200"]

@@ -1,0 +1,11 @@
+
+heartbeat.monitors:
+  - type: http
+    urls: ["http://10.0.2.15"]
+    schedule: "@every 10s"
+  - type: tcp
+    hosts: ["10.0.2.15:3306"]
+    schedule: "@every 10s"
+
+output.elasticsearch:
+  hosts: ["http://localhost:9200"]
