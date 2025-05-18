@@ -1,0 +1,16 @@
+[sources.filebeat_input]
+type = "file"
+include = ["/var/log/nginx/*.log"]
+
+[transforms.parse_logs]
+type = "remap"
+inputs = ["filebeat_input"]
+source = '''
+structured = parse_grok!(.message, "%{IPV4:remote_ip} - %{DATA:remote_user} \[%{HTTPDATE:timestamp}\] \"%{WORD:method} %{URIPATHPARAM:uri} HTTP/%{NUMBER:http_version}\" %{NUMBER:status} %{NUMBER:bytes} \"%{DATA:referrer}\" \"%{DATA:user_agent}\"")
+'''
+
+[sinks.elasticsearch]
+type = "elasticsearch"
+inputs = ["parse_logs"]
+endpoint = "http://localhost:9200"
+index = "vector-nginx-%Y.%m.%d"
